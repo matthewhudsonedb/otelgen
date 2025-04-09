@@ -111,14 +111,14 @@ func createMeterProvider(reader metric.Reader, metricsCfg *metrics.Config) *metr
 // getExporterOptions returns the exporter options based on the command line flags
 func getExporterOptions(c *cli.Context, mc *metrics.Config) ([]otlpmetricgrpc.Option, []otlpmetrichttp.Option) {
 	grpcExpOpt := []otlpmetricgrpc.Option{
-		otlpmetricgrpc.WithEndpoint(mc.Endpoint),
+		otlpmetricgrpc.WithEndpointURL(mc.Endpoint),
 		otlpmetricgrpc.WithDialOption(
 			grpc.WithBlock(),
 		),
 	}
 
 	httpExpOpt := []otlpmetrichttp.Option{
-		otlpmetrichttp.WithEndpoint(mc.Endpoint),
+		otlpmetrichttp.WithEndpointURL(mc.Endpoint),
 	}
 
 	if c.Bool("insecure") {
